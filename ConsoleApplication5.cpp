@@ -1,30 +1,33 @@
 ﻿#include <stdio.h>
 
-int mod_(int dat) {
-    if (dat < 0) {
-        return dat * -1;
-    }
-    return dat;
-}
-
-int findingMinimum( int* d, int len)
+float findGarmonic( int* d,int* weight, int len)
 {
-    int min = d[0];
+    float sum =0;
+    float c;
     for (int i = 0; i < len; i++) {
-        if (mod_(min)>mod_(d[i])) {
-            min = d[i];
-       }
+        c =  (float) (weight[i]) / (d[i]);
+        sum =sum + c; 
     }
-    return min;
+    return sum;
 }
 
+int findWeight(int* weight, int len){
+    int sum = 0;
+    for (int i = 0; i < len; i++) {
+       
+        sum = sum + (weight[i]);
+    }
+    return sum;
+}
 int main()
 {
     int d[10];
+    int weight[10];
     int n = 10; 
     int len = 0;
     int c;
     int flag;
+    float mid;
     printf("enter numder of elements: ");
     c=scanf("%d", &len);
     if (c != 1) {
@@ -36,7 +39,12 @@ int main()
     for (int j = 0; j < len; j++) {
         scanf("%d", &j[d]);
     }
-    printf("min element: %d", findingMinimum(d,len));
+    printf("enter elements weight: ");
+    for (int i = 0; i < len; i++) {
+        scanf("%d", &i[weight]);
+    }
+    mid = findWeight(weight, len) / findGarmonic(d,weight, len);
+    printf("mid garmonic: %f", mid);
     return 0;
 }
 
